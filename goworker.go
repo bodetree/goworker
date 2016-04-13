@@ -6,10 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"golang.org/x/net/context"
-
 	"github.com/cihub/seelog"
-	"github.com/youtube/vitess/go/pools"
+	"github.com/golang/net/context"
+	"github.com/sillydong/vitess/go/pools"
 )
 
 var (

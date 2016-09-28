@@ -81,7 +81,7 @@ func (w *worker) finish(conn *RedisConn, job *Job, err error) error {
 func (w *worker) work(jobs <-chan *Job, monitor *sync.WaitGroup) {
 	conn, err := GetConn()
 	if err != nil {
-		logger.Criticalf("Error on getting connection in worker %v", w)
+		logger.Criticalf("Error on getting connection in worker %v: %v", w, err)
 		return
 	} else {
 		w.open(conn)

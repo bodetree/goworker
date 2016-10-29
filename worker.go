@@ -49,7 +49,7 @@ func (w *worker) fail(conn *RedisConn, job *Job, err error) error {
 		FailedAt:  time.Now(),
 		Payload:   job.Payload,
 		Exception: "Error",
-		Error:     fmt.Printf("%+v", err),
+		Error:     fmt.Sprintf("%+v", err),
 		Worker:    w,
 		Queue:     job.Queue,
 	}

@@ -106,7 +106,7 @@ func myFunc(queue string, args ...interface{}) error {
 
 func init() {
 	settings := goworker.WorkerSettings{
-		Uri:            "redis://localhost:6379/",
+		URI:            "redis://localhost:6379/",
 		Connections:    100,
 		QueuesString:   "myqueue, delimited, queues",
 		UseNumber:      true,
@@ -115,7 +115,7 @@ func init() {
 		Namespace:      "resque:",
 		IntervalFloat:       5.0,
 	}
-	goworker.SetSettings(workerSettings)
+	goworker.SetSettings(settings)
 	goworker.Register("MyClass", myFunc)
 }
 
@@ -172,6 +172,18 @@ end
 100.times do
   Resque.enqueue MyClass, ['hi', 'there']
 end
+```
+
+or
+
+```golang
+goworker.Enqueue(&goworker.Job{
+    Queue: "myqueue",
+    Payload: goworker.Payload{
+        Class: "MyClass",
+        Args: []interface{}{"hi", "there"},
+    },
+})
 ```
 
 ## Flags
